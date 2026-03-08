@@ -1,17 +1,17 @@
 [tool.briefcase]
 project_name = "Yegna Gebeta"
-bundle = "com.alemselam09.yegnagebeta"    # የራስህን ባንድል መቀየር ትችላለህ
-version = "1.0"
+bundle = "com.alemselam09.yegnagebeta"
+version = "1.0.0"
 url = "https://github.com/alemselam09/yegna_gebeta_ios"
 license = "MIT"
 author = "alemselam09"
 author_email = "alemselaminfo@gmail.com"
 
 [tool.briefcase.app.yegnagebeta]
-formal_name = "Yegna Gebeta"
+formal_name = "YegnaGebeta"
 description = "Yegna Gebeta page"
-sources = ['src/yegnagebeta']
+sources = ["src/yegnagebeta"]
+requires = ["toga"]
 
 [tool.briefcase.app.yegnagebeta.iOS]
 requires = []
-
