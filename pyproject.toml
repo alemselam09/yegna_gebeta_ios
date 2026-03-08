@@ -11,7 +11,9 @@ author_email = "alemselaminfo@gmail.com"
 formal_name = "YegnaGebeta"
 description = "Yegna Gebeta page"
 sources = ["src/yegnagebeta"]
-requires = ["toga"]
+requires = [
+    "toga"
+]
 
 [tool.briefcase.app.yegnagebeta.iOS]
 requires = []
