@@ -1,15 +1,15 @@
 [tool.briefcase]
 project_name = "የኛ ገበታ"
-bundle = "com.alem.yegnagebeta"          # ለምሳሌ፡ com.yohannes.yegnagebeta
+bundle = "com.alemselam09.yegnagebeta"    # የራስህን ባንድል መቀየር ትችላለህ
 version = "1.0"
 url = "https://github.com/alemselam09/yegna_gebeta_ios"
 license = "MIT"
-author = "alemselam"
+author = "alemselam09"
 author_email = "alemselaminfo@gmail.com"
 
-[tool.briefcase.app.yegnagebeta]    # የፓይቶን ፓኬጁ ስም
+[tool.briefcase.app.yegnagebeta]
 formal_name = "የኛ ገበታ"
-description = "የኛ ገበታ ድረ-ገጽ "
+description = " የኛ ገበታ ድረ-ገጽ "
 sources = ['src/yegnagebeta']
 
 [tool.briefcase.app.yegnagebeta.iOS]
