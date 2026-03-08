@@ -1,0 +1,16 @@
+[tool.briefcase]
+project_name = "የኛ ገበታ"
+bundle = "com.alem.yegnagebeta"          # ለምሳሌ፡ com.yohannes.yegnagebeta
+version = "1.0"
+url = "https://github.com/alemselam09/yegna_gebeta_ios"
+license = "MIT"
+author = "alemselam"
+author_email = "alemselaminfo@gmail.com"
+
+[tool.briefcase.app.yegnagebeta]    # የፓይቶን ፓኬጁ ስም
+formal_name = "የኛ ገበታ"
+description = "የኛ ገበታ ድረ-ገጽ "
+sources = ['src/yegnagebeta']
+
+[tool.briefcase.app.yegnagebeta.iOS]
+requires = []
