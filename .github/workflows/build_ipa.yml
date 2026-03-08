@@ -29,13 +29,17 @@ jobs:
       - name: Build iOS app
         run: briefcase build iOS
 
-      # (አማራጭ) የiOS አቃፊን ይዘት ለማየት ጊዜያዊ እርምጃ
-      - name: List iOS directory contents (debug)
-        run: ls -la iOS/
+      # ሁሉንም ፋይሎች እና አቃፊዎች ለማየት (የት እንዳለ ለማወቅ)
+      - name: List all files and folders (debug)
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo "\nSearching for .ipa files:"
+          find . -name "*.ipa" -type f
 
-      # የ .ipa ፋይሉን ለማግኘት ትክክለኛው መንገድ
+      # የተገኘውን .ipa ፋይል ሁሉ ለማውረድ
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: yegna-gebeta-ipa
-          path: iOS/**/*.ipa   # በማንኛውም ንዑስ አቃፊ ውስጥ ያለ .ipa ፋይልን ይፈልጋል
+          path: '**/*.ipa'   # በማንኛውም ንዑስ አቃፊ ውስጥ ያለ ማንኛውም .ipa ፋይል
