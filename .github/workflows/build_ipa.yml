@@ -29,8 +29,13 @@ jobs:
       - name: Build iOS app
         run: briefcase build iOS
 
+      # (አማራጭ) የiOS አቃፊን ይዘት ለማየት ጊዜያዊ እርምጃ
+      - name: List iOS directory contents (debug)
+        run: ls -la iOS/
+
+      # የ .ipa ፋይሉን ለማግኘት ትክክለኛው መንገድ
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: yegna-gebeta-ipa
-          path: iOS/*/*.ipa
+          path: iOS/**/*.ipa   # በማንኛውም ንዑስ አቃፊ ውስጥ ያለ .ipa ፋይልን ይፈልጋል
