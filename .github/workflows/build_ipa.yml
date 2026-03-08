@@ -1,48 +1,44 @@
-name: Build iOS App
+name: Build iOS IPA for Yegna Gebeta
 
+# ይህ የስራ ሂደት የሚጀመረው ወደ main ቅርንጫፍ ስትገፋ (push) ወይም በእጅ ስትጀምር ነው።
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build-ios:
+    # በማክ ኦኤስ ተርሚናል ላይ ይሰራል (GitHub በነፃ ይሰጣል)
     runs-on: macos-latest
 
     steps:
-
-      - name: Checkout
+      # 1. ኮዱን ከማከማቻ (repository) አውርድ
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      # 2. ፓይቶንን አዘጋጅ (3.11 እንጠቀማለን)
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install dependencies
+      # 3. BeeWare (briefcase) ን ጫን
+      - name: Install BeeWare
         run: |
           python -m pip install --upgrade pip
-          pip install briefcase toga
+          pip install briefcase
 
+      # 4. የiOS ፕሮጀክት ፍጠር (Xcode ፕሮጀክት ይፈጠራል)
       - name: Create iOS project
-        run: |
-          briefcase create iOS --no-input
+        run: briefcase create iOS
 
-      - name: Build iOS
-        run: |
-          briefcase build iOS
+      # 5. የiOS አፕሊኬሽኑን ገንባ (build)
+      - name: Build iOS app
+        run: briefcase build iOS
 
-      - name: Package iOS
-        run: |
-          briefcase package iOS --adhoc-sign
-
-      - name: Show files
-        run: |
-          echo "Searching IPA..."
-          find . -name "*.ipa"
-
-      - name: Upload IPA
+      # 6. የተገኘውን .ipa ፋይል በጂትሃብ ላይ አስቀምጥ (እንድታወርደው)
+      - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ios-app
-          path: |
-            **/*.ipa
+          name: yegna-gebeta-ipa
+          path: '**/yegna_gebeta.ipa'
