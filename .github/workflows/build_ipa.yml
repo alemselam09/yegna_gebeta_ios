@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -20,19 +20,29 @@ jobs:
       - name: Install Briefcase
         run: |
           python -m pip install --upgrade pip
-          pip install briefcase
+          pip install briefcase toga
 
       - name: Create iOS project
-        run: briefcase create iOS --no-input
+        run: |
+          briefcase create iOS --no-input
 
       - name: Build iOS
-        run: briefcase build iOS
+        run: |
+          briefcase build iOS
 
       - name: Package iOS
-        run: briefcase package iOS --adhoc-sign
+        run: |
+          briefcase package iOS --adhoc-sign
+
+      - name: List Build Files
+        run: |
+          echo "Searching for IPA..."
+          find . -name "*.ipa"
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
-          name: yegna-gebeta-ipa
-          path: "**/*.ipa"
+          name: ios-ipa
+          path: |
+            build/ios/ipa/*.ipa
+            **/*.ipa
