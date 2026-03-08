@@ -20,7 +20,7 @@ class YegnaGebetaApp(toga.App):
         self.main_window.show()
 
 def main():
-    return YegnaGebetaApp('የኛ ገበታ', 'com.alem.yegnagebeta')
+    return YegnaGebetaApp('የኛ ገበታ', 'com.alemselam09.yegnagebeta')
 
 if __name__ == '__main__':
     main()
