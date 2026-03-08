@@ -29,7 +29,7 @@ jobs:
       - name: Build iOS app
         run: briefcase build iOS
 
-      # ሁሉንም ፋይሎች እና አቃፊዎች ለማየት (የት እንዳለ ለማወቅ)
+      # ሁሉንም ፋይሎች እና አቃፊዎች ለማየት (ማረሚያ)
       - name: List all files and folders (debug)
         run: |
           echo "Current directory contents:"
@@ -37,7 +37,7 @@ jobs:
           echo "\nSearching for .ipa files:"
           find . -name "*.ipa" -type f
 
-      # የተገኘውን .ipa ፋይል ሁሉ ለማውረድ
+      # የተገኘውን .ipa ፋይል ሁሉ ለማውረድ (ትክክለኛው መንገድ)
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
