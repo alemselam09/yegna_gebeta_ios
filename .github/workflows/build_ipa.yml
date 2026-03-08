@@ -29,9 +29,9 @@ jobs:
       - name: Build iOS app
         run: briefcase build iOS
 
-      # ቁልፍ እርምጃ፦ አይፒኤ ፓኬጅ መፍጠር
+      # ቁልፍ እርምጃ፦ አይፒኤ ፓኬጅ መፍጠር (ያለ በይነተገናኝ ጥያቄዎች እና በአድሆክ ፊርማ)
       - name: Package iOS app (create .ipa)
-        run: briefcase package iOS --no-sign   # ምንም የፊርማ ቁልፍ ከሌለ --no-sign ይጠቀሙ
+        run: briefcase package iOS -u --adhoc-sign
 
       # ዝርዝር የፋይል መዋቅር ማረሚያ
       - name: Debug - List all files and directories
@@ -42,8 +42,6 @@ jobs:
           if [ -d "iOS" ]; then ls -la iOS/; else echo "iOS directory not found"; fi
           echo "=== Searching for .ipa files ==="
           find . -name "*.ipa" -type f
-          echo "=== Briefcase output location ==="
-          briefcase output 2>/dev/null || echo "briefcase output not available"
 
       # የ .ipa ፋይል ቦታ ማግኘት እና ማስቀመጥ
       - name: Find and upload IPA
