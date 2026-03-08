@@ -1,73 +1,33 @@
-name: Build iOS IPA for Yegna Gebeta
+name: Build iOS IPA
 
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:
 
 jobs:
   build-ios:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install BeeWare Briefcase
+      - name: Install Briefcase
         run: |
           python -m pip install --upgrade pip
-          pip install --upgrade briefcase
+          pip install briefcase
 
       - name: Create iOS project
-        run: |
-          briefcase create iOS
+        run: briefcase create iOS --no-input
 
-      - name: Build iOS project
-        run: |
-          briefcase build iOS
+      - name: Build iOS
+        run: briefcase build iOS
 
-      - name: Package iOS project
-        run: |
-          briefcase package iOS --adhoc-sign
+      - name: Package iOS
+        run: briefcase package iOS --adhoc-sign
 
-      - name: Debug - Show project structure
-        run: |
-          echo "==== ROOT ===="
-          pwd
-          ls -la
-          echo "==== iOS FOLDER ===="
-          ls -R iOS || true
-
-      - name: Locate IPA
-        id: locate_ipa
-        run: |
-          echo "Searching for IPA..."
-
-          IPA_PATH=$(find . -name "*.ipa" -type f | head -n 1)
-
-          if [ -z "$IPA_PATH" ]; then
-            echo "No IPA found automatically."
-
-            echo "Trying common Briefcase locations..."
-
-            IPA_PATH=$(find iOS -name "*.ipa" -type f | head -n 1)
-          fi
-
-          if [ -z "$IPA_PATH" ]; then
-            echo "IPA still not found!"
-            exit 1
-          fi
-
-          echo "IPA found at $IPA_PATH"
-          echo "ipa_path=$IPA_PATH" >> $GITHUB_OUTPUT
-
-      - name: Upload IPA artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: yegna-gebeta-ios
-          path: ${{ steps.locate_ipa.outputs.ipa_path }}
+      - name: Find IPA
+        run: find . -name "*.ipa"
