@@ -11,6 +11,10 @@ author_email = "alemselamad@gmail.com"
 formal_name = "Yegna Gebeta"
 description = "Yegna Gebeta WebView App"
 sources = ['src/yegnagebeta']
+requires = [
+    "toga[iOS]>=0.4.3",  # pin Toga version for stable iOS builds
+]
 
 [tool.briefcase.app.yegnagebeta.iOS]
+# You may add specific icons, splash, or requirements here if needed.
 requires = []
