@@ -8,7 +8,7 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest
- 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,12 +21,12 @@ jobs:
       - name: Install BeeWare and Toga
         run: |
           python -m pip install --upgrade pip
-          pip install briefcase toga[dev]
+          pip install "toga[iOS]>=0.4.3" briefcase
 
       - name: Create iOS project
         run: briefcase create iOS
 
-      - name: Update iOS project (deps/sync)
+      - name: Update iOS project
         run: briefcase update iOS
 
       - name: Build iOS app
