@@ -1,19 +1,16 @@
 [tool.briefcase]
-project_name = "Yegna Gebeta"
+project_name = "YegnaGebeta"
 bundle = "com.alemselam09.yegnagebeta"
-version = "1.0.0"
+version = "1.0"
 url = "https://github.com/alemselam09/yegna_gebeta_ios"
 license = "MIT"
 author = "alemselam09"
-author_email = "alemselaminfo@gmail.com"
+author_email = "alemselamad@gmail.com"
 
 [tool.briefcase.app.yegnagebeta]
-formal_name = "YegnaGebeta"
-description = "Yegna Gebeta page"
-sources = ["src/yegnagebeta"]
-requires = [
-    "toga"
-]
+formal_name = "Yegna Gebeta"
+description = "Yegna Gebeta WebView App"
+sources = ['src/yegnagebeta']
 
 [tool.briefcase.app.yegnagebeta.iOS]
 requires = []
