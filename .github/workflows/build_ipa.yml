@@ -18,17 +18,16 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install BeeWare
+      - name: Install BeeWare and Toga
         run: |
           python -m pip install --upgrade pip
-          pip install briefcase
+          pip install briefcase toga[dev]
 
-      - name: Create iOS project (with debug)
-        run: |
-          briefcase create iOS
-          echo "=== After create, check if iOS folder exists ==="
-          ls -la
-          if [ -d "iOS" ]; then echo "✅ iOS folder created"; else echo "❌ iOS folder NOT created"; exit 1; fi
+      - name: Create iOS project
+        run: briefcase create iOS
+
+      - name: Update iOS project (deps/sync)
+        run: briefcase update iOS
 
       - name: Build iOS app
         run: briefcase build iOS
@@ -37,6 +36,7 @@ jobs:
         run: briefcase package iOS -u --adhoc-sign
 
       - name: Find .ipa file
+        id: find_ipa
         run: |
           echo "=== Searching for .ipa files ==="
           find . -name "*.ipa" -type f
@@ -48,7 +48,6 @@ jobs:
             echo "❌ IPA file not found!"
             exit 1
           fi
-        id: find_ipa
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
