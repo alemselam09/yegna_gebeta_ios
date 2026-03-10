@@ -12,7 +12,7 @@ class YegnaGebetaApp(toga.App):
         self.main_window.show()
 
 def main():
-    return YegnaGebetaApp.main()
+    return YegnaGebetaApp()
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    main().main_loop()
